@@ -156,7 +156,7 @@ export default function Home() {
 
 
           <a 
-            href="https://github.com" 
+            href="https://github.com/jplacorte/personal-profile" 
             target="_blank" 
             rel="noopener noreferrer"
             className="cute-btn px-4 py-1.5 bg-white text-[10px] text-cute-dark font-bold shadow-[2px_2px_0px_#2d2729] hover:cute-card-hover active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#2d2729] clickable"
