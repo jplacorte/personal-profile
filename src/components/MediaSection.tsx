@@ -565,7 +565,7 @@ export default function MediaSection() {
         {/* Fullscreen Image Modal */}
         {selectedImage !== null && mounted && createPortal(
           <div 
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-cute-dark/80 backdrop-blur-sm p-4 md:p-8"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-cute-dark/80 backdrop-blur-sm p-4 md:p-8"
             onClick={() => setSelectedImage(null)}
           >
             <button 
