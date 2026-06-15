@@ -59,7 +59,7 @@ export default function HobbiesSection() {
   const [isBoarding, setIsBoarding] = useState<boolean>(false);
 
   const travelDestinations = [
-    { city: "Tokyo, Japan 🌸", activity: "Strolling through Shibuya streets and Shinjuku Gyoen parks.", color: "bg-cute-peach/30" },
+    { city: "Tokyo, Japan 🗼", activity: "Strolling through Shibuya streets and Shinjuku Gyoen parks.", color: "bg-cute-peach/30" },
     { city: "Seoul, South Korea 🇰🇷", activity: "Bustling shopping malls in Myeongdong and walking Han River parks.", color: "bg-cute-sky/30" },
     { city: "Singapore 🇸🇬", activity: "Marveling at Jewel Changi mall and strolling Gardens by the Bay.", color: "bg-cute-mint/30" },
     { city: "Osaka, Japan 🏯", activity: "Tasting local food at Dotonbori and strolling around Osaka Castle park.", color: "bg-cute-lavender/30" },

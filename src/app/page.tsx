@@ -53,7 +53,7 @@ export default function Home() {
           {/* Logo / System Indicator */}
           <a href="#intro" className="flex items-center space-x-2 font-mono text-xs tracking-widest font-extrabold text-cute-dark hover:text-cute-peach transition-colors clickable">
             <Cpu size={14} className="text-cute-peach animate-pulse" />
-            <span>John Phillip // <span className="text-cute-peach">SYS 🌸</span></span>
+            <span>John Phillip // <span className="text-cute-peach">SYS ⚡</span></span>
           </a>
 
           {/* Desktop Navigation Links */}
@@ -99,7 +99,7 @@ export default function Home() {
           onClick={() => setMenuOpen(false)} 
           className="text-cute-dark hover:text-cute-peach transition-colors clickable"
         >
-          [ INTRO 🌸 ]
+          [ INTRO 🧸 ]
         </a>
         <a 
           href="#hobbies" 

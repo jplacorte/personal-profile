@@ -102,7 +102,7 @@ export default function IntroSection() {
           </h1>
 
           <h2 className="hero-title text-lg md:text-xl font-bold font-mono tracking-tight text-cute-muted">
-            [ Full Stack Software Engineer ] 🌸
+            [ Full Stack Software Engineer ] 💻
           </h2>
 
           <p className="intro-text text-base md:text-lg text-cute-dark font-medium leading-relaxed font-sans max-w-2xl">

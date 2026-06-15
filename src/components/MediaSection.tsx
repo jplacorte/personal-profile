@@ -409,7 +409,7 @@ export default function MediaSection() {
                 {/* Binge-watching and True Stories statement */}
                 <div className="mb-5 p-4 bg-cute-sky/30 border-2 border-cute-dark rounded-2xl shadow-[2px_2px_0px_#2d2729]">
                   <p className="text-xs text-cute-dark font-semibold leading-relaxed font-sans">
-                    🌸 I love to binge-watch, it escapes me from reality, and I really love watching movies that are based on true stories also!
+                    🍿 I love to binge-watch, it escapes me from reality, and I really love watching movies that are based on true stories also!
                   </p>
                 </div>
 
