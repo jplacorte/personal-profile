@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cute-bg: #fcfaf7;
+  --color-cute-bg-muted: #f5ede2;
+  --color-cute-dark: #2d2729;
+  --color-cute-muted: #544a4d;
+  --color-cute-peach: #ffb2a7;
+  --color-cute-mint: #a8e6cf;
+  --color-cute-lavender: #d8bffd;
+  --color-cute-sky: #bfe3ff;
+  --color-cute-yellow: #ffe17d;
+
+  --font-sans: var(--font-quicksand), var(--font-geist-sans), ui-sans-serif, system-ui;
+  --font-mono: var(--font-space-mono), var(--font-geist-mono), ui-monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcfaf7;
+  --foreground: #2d2729;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom Webkit scrollbar - Cute and rounded */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fcfaf7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e6ded5;
+  border-radius: 10px;
+  border: 3px solid #fcfaf7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffb2a7;
+}
+
+/* Custom shadow effects - Cute and playful offset shadows */
+@utility cute-card {
+  background-color: #ffffff;
+  border: 2.5px solid #2d2729;
+  border-radius: 1.5rem;
+  box-shadow: 4px 4px 0px #2d2729;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@utility cute-card-hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #2d2729;
+  border-color: #2d2729;
+}
+
+@utility cute-btn {
+  background-color: #ffffff;
+  border: 2px solid #2d2729;
+  border-radius: 9999px;
+  box-shadow: 3px 3px 0px #2d2729;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@utility cute-btn-active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #2d2729;
+}
+
+/* Grid drawing background */
+.cute-grid {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(45, 39, 41, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(45, 39, 41, 0.04) 1px, transparent 1px);
+}
+
+.cute-dots {
+  background-size: 20px 20px;
+  background-image: radial-gradient(rgba(255, 178, 167, 0.25) 2px, transparent 2px);
+}
+
+/* Hide cursor on desktop for custom cursor */
+@media (min-width: 1024px) {
+  .custom-cursor-active, 
+  .custom-cursor-active a, 
+  .custom-cursor-active button,
+  .custom-cursor-active input,
+  .custom-cursor-active textarea,
+  .custom-cursor-active select,
+  .custom-cursor-active [role="button"] {
+    cursor: none;
+  }
+}
+
+/* Karaoke bouncing music notes */
+@keyframes karaoke-bounce {
+  from { transform: translateY(0px) scale(1);   opacity: 0.7; }
+  to   { transform: translateY(-10px) scale(1.2); opacity: 1;   }
 }
