@@ -66,11 +66,11 @@ export default function HobbiesSection() {
   const [isBoarding, setIsBoarding] = useState<boolean>(false);
 
   const travelDestinations = [
-    { city: "Tokyo, Japan 🗼", activity: "Strolling through Shibuya streets and Shinjuku Gyoen parks.", color: "bg-cute-peach/30" },
-    { city: "Seoul, South Korea 🇰🇷", activity: "Bustling shopping malls in Myeongdong and walking Han River parks.", color: "bg-cute-sky/30" },
-    { city: "Singapore 🇸🇬", activity: "Marveling at Jewel Changi mall and strolling Gardens by the Bay.", color: "bg-cute-mint/30" },
-    { city: "Osaka, Japan 🏯", activity: "Tasting local food at Dotonbori and strolling around Osaka Castle park.", color: "bg-cute-lavender/30" },
-    { city: "Kyoto, Japan 🎋", activity: "Walking through Arashiyama Bamboo Grove and peaceful city parks.", color: "bg-cute-yellow/30" }
+    { city: "Tokyo, Japan 🗼", activity: "Strolling through the streets of Shibuya and Shinjuku Gyoen.", color: "bg-cute-peach/30" },
+    { city: "Seoul, South Korea 🇰🇷", activity: "Exploring bustling shopping malls in Myeongdong and walking along the Han River.", color: "bg-cute-sky/30" },
+    { city: "Singapore 🇸🇬", activity: "Marveling at Jewel Changi and strolling through Gardens by the Bay.", color: "bg-cute-mint/30" },
+    { city: "Osaka, Japan 🏯", activity: "Tasting local food in Dotonbori and strolling around Osaka Castle Park.", color: "bg-cute-lavender/30" },
+    { city: "Kyoto, Japan 🎋", activity: "Walking through the Arashiyama Bamboo Grove and peaceful city parks.", color: "bg-cute-yellow/30" }
   ];
 
   const boardFlight = () => {
@@ -434,7 +434,7 @@ export default function HobbiesSection() {
                     The Passion
                   </h4>
                   <p className="text-sm text-cute-dark font-medium leading-relaxed font-sans">
-                    Building application prototypes, writing clean code, and solving real-world challenges. Designing and creating custom software is my favorite craft!
+                    I enjoy building application prototypes, writing clean code, and solving real-world challenges. Designing and creating custom software is my favorite craft!
                   </p>
                 </div>
 
@@ -594,7 +594,7 @@ export default function HobbiesSection() {
                     Adventure Mode
                   </h4>
                   <p className="text-sm text-cute-dark font-medium leading-relaxed font-sans">
-                    I love to travel, onboard on a plane, and visit places I have never been. Strolling around shopping malls, scenic parks, and vibrant cities is my favorite way to reset and get inspired!
+                    I love traveling, boarding planes, and visiting places I have never been to before. Strolling through shopping malls, scenic parks, and vibrant cities is my favorite way to reset and get inspired!
                   </p>
                 </div>
 
@@ -654,7 +654,7 @@ export default function HobbiesSection() {
                     The Passion
                   </h4>
                   <p className="text-sm text-cute-dark font-medium leading-relaxed font-sans">
-                    Belting out my favorite tunes on the karaoke machine! It&apos;s the ultimate way to bring positive vibes and connect with friends. Here are my absolute go-to tracks:
+                    I love belting out my favorite tunes on the karaoke machine! It's the ultimate way to bring positive vibes and connect with friends. Here are my absolute go-to tracks:
                   </p>
                 </div>
 
