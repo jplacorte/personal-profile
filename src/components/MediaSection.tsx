@@ -604,7 +604,7 @@ export default function MediaSection() {
           </div>
 
           {/* Gallery Section */}
-          <div className="mt-12 w-full z-20 relative">
+          <div id="gallery" className="mt-12 w-full z-20 relative">
             <div className="flex justify-between items-center mb-6">
               <span className="font-mono text-sm text-cute-muted font-bold uppercase tracking-wide flex items-center gap-2">
                 <span className="text-xl">📸</span> Photo Gallery

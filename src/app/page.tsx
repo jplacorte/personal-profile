@@ -73,6 +73,7 @@ export default function Home() {
             <a href="#intro" className="text-cute-muted hover:text-cute-peach transition-colors clickable">/intro</a>
             <a href="#hobbies" className="text-cute-muted hover:text-cute-peach transition-colors clickable">/hobbies</a>
             <a href="#media" className="text-cute-muted hover:text-cute-peach transition-colors clickable">/media</a>
+            <a href="#gallery" className="text-cute-muted hover:text-cute-peach transition-colors clickable">/gallery</a>
             <a href="#timeline" className="text-cute-muted hover:text-cute-peach transition-colors clickable">/timeline</a>
           </nav>
 
@@ -126,6 +127,13 @@ export default function Home() {
           className="text-cute-dark hover:text-cute-peach transition-colors clickable"
         >
           [ PLAYLISTS 🎵 ]
+        </a>
+        <a 
+          href="#gallery" 
+          onClick={() => setMenuOpen(false)} 
+          className="text-cute-dark hover:text-cute-peach transition-colors clickable"
+        >
+          [ GALLERY 📸 ]
         </a>
         <a 
           href="#timeline" 
