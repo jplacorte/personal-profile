@@ -61,7 +61,8 @@ export default function MediaSection() {
     { title: "Shelter (Ghibli Version) ☁️", artist: "Porter Robinson", duration: "04:40", type: "Orchestral", youtubeId: "tY3x3JXqAJs" },
     { title: "Octopath Traveler Main Theme 🎻", artist: "Yasunori Nishiki", duration: "02:35", type: "Game OST", youtubeId: "sR1OHW_IReI" },
     { title: "Final Fantasy Theme 🌌", artist: "Nobuo Uematsu", duration: "03:08", type: "Game OST", youtubeId: "fsbqOGSw-5A" },
-    { title: "Open Your Heart 💙", artist: "Westlife", duration: "03:40", type: "Pop", youtubeId: "rjf-MMJugsM" }
+    { title: "Open Your Heart 💙", artist: "Westlife", duration: "03:40", type: "Pop", youtubeId: "rjf-MMJugsM" },
+    { title: "Out of Time ⏳", artist: "The Weeknd", duration: "03:35", type: "R&B", youtubeId: "kxgj5af8zg4" }
   ];
 
   const tvShows = [
