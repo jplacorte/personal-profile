@@ -9,7 +9,7 @@ export default function IntroSection() {
   const [faceExpression, setFaceExpression] = useState<string>("(✿◠‿◠)");
   const [sysStatus, setSysStatus] = useState<string>("Coding...");
 
-  const text = "Hi, I'm John Phillip Febrero Lacorte! I'm a Full Stack Software Engineer. When I'm not tinkering with code or crafting fun pages, I’m usually deep-diving into hardware tuning, modding mechanical keyboards, singing my favorite karaoke hits, or climbing the ranks in competitive gaming. Here’s a quick look into my world.";
+  const text = "Hi, I'm John Phillip Febrero Lacorte! I'm a Full Stack Software Engineer. When I'm not tinkering with code or crafting fun pages, I’m usually deep-diving into hardware tuning, modding mechanical keyboards, strolling around to unwind, singing my favorite karaoke hits, or climbing the ranks in competitive gaming. Here’s a quick look into my world.";
 
   useEffect(() => {
     // Cute bouncy entrance timeline
