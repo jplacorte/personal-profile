@@ -611,7 +611,7 @@ export default function MediaSection() {
               </span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {[1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((num) => (
+              {[1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((num) => (
                 <div 
                   key={num} 
                   onClick={() => setSelectedImage(num)}
