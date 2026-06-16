@@ -62,7 +62,8 @@ export default function MediaSection() {
     { title: "Octopath Traveler Main Theme 🎻", artist: "Yasunori Nishiki", duration: "02:35", type: "Game OST", youtubeId: "sR1OHW_IReI" },
     { title: "Final Fantasy Theme 🌌", artist: "Nobuo Uematsu", duration: "03:08", type: "Game OST", youtubeId: "fsbqOGSw-5A" },
     { title: "Open Your Heart 💙", artist: "Westlife", duration: "03:40", type: "Pop", youtubeId: "rjf-MMJugsM" },
-    { title: "Out of Time ⏳", artist: "The Weeknd", duration: "03:35", type: "R&B", youtubeId: "kxgj5af8zg4" }
+    { title: "Out of Time ⏳", artist: "The Weeknd", duration: "03:35", type: "R&B", youtubeId: "kxgj5af8zg4" },
+    { title: "Lighters 🔥", artist: "Bad Meets Evil ft. Bruno Mars", duration: "05:08", type: "Hip-Hop", youtubeId: "YWt4wmZ_EMI" }
   ];
 
   const tvShows = [
