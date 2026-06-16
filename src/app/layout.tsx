@@ -15,7 +15,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jplacorte.vercel.app"),
+  metadataBase: new URL("https://phillip-profile.vercel.app"),
   title: "John Phillip | About me",
   description: "Personal space of John Phillip, a Full Stack Software Engineer. Deep-diving into hardware tuning and modern web engineering.",
   keywords: ["John Phillip", "Full Stack Engineer", "Software Engineer Philippines", "Hardware Tuning", "Anime.js Next.js Portfolio"],
