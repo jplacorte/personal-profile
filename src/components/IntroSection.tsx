@@ -137,13 +137,15 @@ export default function IntroSection() {
 
             <div className="bg-white border-2 border-cute-dark rounded-2xl p-3 flex items-center space-x-3 shadow-[2.5px_2.5px_0px_#2d2729]">
               <span className="text-xl">🎨</span>
-              <div>
+              <div className="min-w-0 flex-1">
                 <p className="text-[10px] font-mono font-bold text-cute-muted uppercase leading-none">Fave Colors</p>
-                <div className="flex items-center gap-1.5 mt-1">
-                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-red-500 border border-cute-dark" title="Red" />
-                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#f5f5dc] border border-cute-dark" title="Beige" />
-                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-blue-500 border border-cute-dark" title="Blue" />
-                  <span className="text-xs font-bold text-cute-dark font-sans truncate max-w-[80px] md:max-w-none">Red, Beige, Blue</span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-1.5 mt-1">
+                  <div className="flex items-center gap-1">
+                    <span className="inline-block w-2.5 h-2.5 rounded-full bg-red-500 border border-cute-dark" title="Red" />
+                    <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#f5f5dc] border border-cute-dark" title="Beige" />
+                    <span className="inline-block w-2.5 h-2.5 rounded-full bg-blue-500 border border-cute-dark" title="Blue" />
+                  </div>
+                  <span className="text-xs font-bold text-cute-dark font-sans leading-tight">Red, Beige, Blue</span>
                 </div>
               </div>
             </div>
