@@ -94,7 +94,7 @@ export default function Home() {
       </header>
 
       <div 
-        className={`fixed inset-0 z-50 bg-white/95 backdrop-blur-md flex flex-col justify-center items-center gap-8 text-lg font-mono font-bold transition-transform duration-300 md:hidden ${
+        className={`fixed inset-0 z-50 bg-white/95 backdrop-blur-md flex flex-col justify-start items-center gap-8 pt-28 pb-12 text-lg font-mono font-bold transition-transform duration-300 md:hidden overflow-y-auto ${
           menuOpen ? "translate-x-0" : "translate-x-full invisible pointer-events-none"
         }`}
       >
