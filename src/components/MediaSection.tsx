@@ -55,12 +55,13 @@ export default function MediaSection() {
     { title: "We Could Happen 🎸", artist: "AJ Rafael", duration: "03:35", type: "Pop", youtubeId: "V6HB_6ltwSA" },
     { title: "Dreaming Alone 🌠", artist: "Against The Current ft. Taka", duration: "03:09", type: "Rock", youtubeId: "l0qWjHP1GQc" },
     { title: "Hold My Hand 🤝", artist: "Akon ft. Michael Jackson", duration: "03:35", type: "Pop", youtubeId: "P9cVHpktlJM" },
+    { title: "All I Ever Need ✨", artist: "Austin Mahone", duration: "03:31", type: "Pop", youtubeId: "KAGnm9HoJsQ" },
+    { title: "Forever 💫", artist: "Chris Brown", duration: "04:37", type: "Pop", youtubeId: "D1--EAvWVAU" },
     { title: "Next 2 U - Euc 🌸", artist: "SawanoHiroyuki[nZk] ft. naNami", duration: "04:04", type: "Anime OST", youtubeId: "AheLLqrEKn4" },
     { title: "Shelter (Ghibli Version) ☁️", artist: "Porter Robinson", duration: "04:40", type: "Orchestral", youtubeId: "tY3x3JXqAJs" },
     { title: "Octopath Traveler Main Theme 🎻", artist: "Yasunori Nishiki", duration: "02:35", type: "Game OST", youtubeId: "sR1OHW_IReI" },
     { title: "Final Fantasy Theme 🌌", artist: "Nobuo Uematsu", duration: "03:08", type: "Game OST", youtubeId: "fsbqOGSw-5A" },
-    { title: "All I Ever Need ✨", artist: "Austin Mahone", duration: "03:31", type: "Pop", youtubeId: "KAGnm9HoJsQ" },
-    { title: "Forever 💫", artist: "Chris Brown", duration: "04:37", type: "Pop", youtubeId: "D1--EAvWVAU" }
+   
   ];
 
   const tvShows = [
@@ -452,7 +453,7 @@ export default function MediaSection() {
                 <Play size={10} className="text-cute-peach animate-pulse" fill="currentColor" />
                 Playlist ({tracks.length})
               </div>
-              <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+              <div className="space-y-1.5 max-h-72 overflow-y-auto pr-1">
                 {tracks.map((track, idx) => (
                   <button
                     key={idx}
