@@ -204,14 +204,16 @@ export default function TimelineSection() {
 
         {/* Progress track */}
         <div className="mb-16 relative cute-timeline-stagger px-4">
-          {/* Main Track connecting line */}
-          <div className="absolute top-1/2 left-4 right-4 h-1 border-t-4 border-dashed border-cute-dark/20 -translate-y-1/2" />
-          
-          {/* Active progress */}
-          <div 
-            className="cute-timeline-progress absolute top-1/2 left-4 h-1 bg-cute-peach -translate-y-1/2 transition-all duration-300"
-            style={{ width: "0%" }}
-          />
+          {/* Main Track connecting line container */}
+          <div className="absolute top-1/2 left-4 right-4 h-1 -translate-y-1/2">
+            {/* Dashed background track */}
+            <div className="absolute inset-0 border-t-4 border-dashed border-cute-dark/20" />
+            {/* Active progress bar */}
+            <div 
+              className="cute-timeline-progress absolute left-0 top-0 bottom-0 bg-cute-peach transition-all duration-300"
+              style={{ width: "0%" }}
+            />
+          </div>
 
           {/* Dots */}
           <div className="flex justify-between items-center relative z-10">
@@ -227,7 +229,7 @@ export default function TimelineSection() {
                   </button>
                   <span 
                     onClick={() => handleDotClick(index)}
-                    className={`mt-3 font-mono text-[9px] md:text-xs tracking-wider uppercase cursor-pointer select-none font-bold transition-colors duration-300 clickable ${index === activeIndex ? "text-cute-dark" : "text-cute-muted"}`}
+                    className={`hidden md:block mt-3 font-mono text-[9px] md:text-xs tracking-wider uppercase cursor-pointer select-none font-bold transition-colors duration-300 clickable ${index === activeIndex ? "text-cute-dark" : "text-cute-muted"}`}
                   >
                     {era.title.split(" ")[0]}
                   </span>
