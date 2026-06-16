@@ -9,7 +9,7 @@ export default function IntroSection() {
   const [faceExpression, setFaceExpression] = useState<string>("(✿◠‿◠)");
   const [sysStatus, setSysStatus] = useState<string>("Coding...");
 
-  const text = "Hi, I'm John Phillip Febrero Lacorte! I'm a Full Stack Software Engineer. When I’m not writing clean code or refining pixel-perfect interfaces, I’m usually deep-diving into hardware tuning, modding mechanical keyboards, singing my favorite karaoke hits, or climbing the ranks in competitive gaming. Here’s a quick look into my world.";
+  const text = "Hello! I'm John Phillip Febrero Lacorte. This is my little personal playground on the web (strictly for fun, not professional!). When I'm not tinkering with hobby code or tuning PC hardware, I'm usually building mechanical keyboards, belting out my favorite karaoke tracks, or playing video games. Welcome to my corner of the web!";
 
   useEffect(() => {
     // Cute bouncy entrance timeline
@@ -102,7 +102,7 @@ export default function IntroSection() {
           </h1>
 
           <h2 className="hero-title text-lg md:text-xl font-bold font-mono tracking-tight text-cute-muted">
-            [ Full Stack Software Engineer ] 💻
+            [ Tech Hobbyist & Gentleman ] ☕
           </h2>
 
           <p className="intro-text text-base md:text-lg text-cute-dark font-medium leading-relaxed font-sans max-w-2xl">
