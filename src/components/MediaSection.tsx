@@ -54,6 +54,7 @@ export default function MediaSection() {
     { title: "Kailan? 🌧️", artist: "Maki", duration: "03:52", type: "OPM", youtubeId: "Uq8ZhVpNYzs" },
     { title: "We Could Happen 🎸", artist: "AJ Rafael", duration: "03:35", type: "Pop", youtubeId: "V6HB_6ltwSA" },
     { title: "Hold My Hand 🤝", artist: "Akon ft. Michael Jackson", duration: "03:35", type: "Pop", youtubeId: "P9cVHpktlJM" },
+    { title: "One More Try ✨", artist: "A1", duration: "03:30", type: "Pop", youtubeId: "l48CCJDW2H4" },
     { title: "Open Your Heart 💙", artist: "Westlife", duration: "03:40", type: "Pop", youtubeId: "rjf-MMJugsM" },
     { title: "Out of Time ⏳", artist: "The Weeknd", duration: "03:35", type: "R&B", youtubeId: "kxgj5af8zg4" },
     { title: "Lighters 🔥", artist: "Bad Meets Evil ft. Bruno Mars", duration: "05:08", type: "Pop Rap", youtubeId: "YWt4wmZ_EMI" },
@@ -64,7 +65,6 @@ export default function MediaSection() {
     { title: "Shelter (Ghibli Version) ☁️", artist: "Porter Robinson", duration: "04:40", type: "Orchestral", youtubeId: "tY3x3JXqAJs" },
     { title: "Octopath Traveler Main Theme 🎻", artist: "Yasunori Nishiki", duration: "02:35", type: "Game OST", youtubeId: "sR1OHW_IReI" },
     { title: "Final Fantasy Theme 🌌", artist: "Nobuo Uematsu", duration: "03:08", type: "Game OST", youtubeId: "fsbqOGSw-5A" },
-    
   ];
 
   const tvShows = [
