@@ -58,6 +58,34 @@ export default function TimelineSection() {
 
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
+  // Swipe gesture support on mobile
+  const touchStartXRef = useRef<number | null>(null);
+  const touchMinDistance = 50;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffX = touchStartXRef.current - touchEndX;
+
+    if (Math.abs(diffX) > touchMinDistance) {
+      setIsPlaying(false); // Pause autoplay on manual interaction
+      if (diffX > 0) {
+        // Swipe left -> Next slide
+        const nextIndex = (activeIndexRef.current + 1) % eras.length;
+        changePage(nextIndex);
+      } else {
+        // Swipe right -> Prev slide
+        const prevIndex = (activeIndexRef.current - 1 + eras.length) % eras.length;
+        changePage(prevIndex);
+      }
+    }
+    touchStartXRef.current = null;
+  };
+
   const changePage = (nextIndex: number) => {
     if (nextIndex === activeIndexRef.current || isAnimating) return;
     setIsAnimating(true);
@@ -277,7 +305,11 @@ export default function TimelineSection() {
           <div className="cute-notebook-back-2 absolute inset-0 bg-white border-2 border-cute-dark rounded-3xl -rotate-1 -translate-y-1 translate-x-0.5 shadow-[1.5px_1.5px_0px_#2d2729] opacity-90" />
           
           {/* Active Page Card */}
-          <div className="cute-notebook-page relative bg-white border-2 border-cute-dark rounded-3xl shadow-[6px_6px_0px_#2d2729] pl-12 pr-6 py-6 md:pl-16 md:pr-8 md:py-8 overflow-visible flex flex-col justify-between min-h-[400px]">
+          <div 
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            className="cute-notebook-page relative bg-white border-2 border-cute-dark rounded-3xl shadow-[6px_6px_0px_#2d2729] pl-12 pr-6 py-6 md:pl-16 md:pr-8 md:py-8 overflow-visible flex flex-col justify-between min-h-[400px] select-none touch-pan-y"
+          >
             {/* Top red margin indicator */}
             <div className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-[22px] ${eras[activeIndex].color}`} />
             
