@@ -52,7 +52,8 @@ export default function MediaSection() {
   const tracks = [
     { title: "Sa Tuwina 💖", artist: "TJ Monterde", duration: "04:04", type: "OPM", youtubeId: "VoSWrn8rvLE" },
     { title: "Shelter (Ghibli Version) ☁️", artist: "Porter Robinson", duration: "04:40", type: "Orchestral", youtubeId: "tY3x3JXqAJs" },
-    { title: "Octopath Traveler Main Theme 🎻", artist: "Yasunori Nishiki", duration: "02:35", type: "Game OST", youtubeId: "sR1OHW_IReI" }
+    { title: "Octopath Traveler Main Theme 🎻", artist: "Yasunori Nishiki", duration: "02:35", type: "Game OST", youtubeId: "sR1OHW_IReI" },
+    { title: "Final Fantasy Theme 🌌", artist: "Nobuo Uematsu", duration: "03:08", type: "Game OST", youtubeId: "fsbqOGSw-5A" }
   ];
 
   const tvShows = [
