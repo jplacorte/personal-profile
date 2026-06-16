@@ -58,7 +58,8 @@ export default function MediaSection() {
     { title: "Next 2 U - Euc 🌸", artist: "SawanoHiroyuki[nZk] ft. naNami", duration: "04:04", type: "Anime OST", youtubeId: "AheLLqrEKn4" },
     { title: "Shelter (Ghibli Version) ☁️", artist: "Porter Robinson", duration: "04:40", type: "Orchestral", youtubeId: "tY3x3JXqAJs" },
     { title: "Octopath Traveler Main Theme 🎻", artist: "Yasunori Nishiki", duration: "02:35", type: "Game OST", youtubeId: "sR1OHW_IReI" },
-    { title: "Final Fantasy Theme 🌌", artist: "Nobuo Uematsu", duration: "03:08", type: "Game OST", youtubeId: "fsbqOGSw-5A" }
+    { title: "Final Fantasy Theme 🌌", artist: "Nobuo Uematsu", duration: "03:08", type: "Game OST", youtubeId: "fsbqOGSw-5A" },
+    { title: "All I Ever Need ✨", artist: "Austin Mahone", duration: "03:31", type: "Pop", youtubeId: "KAGnm9HoJsQ" }
   ];
 
   const tvShows = [
