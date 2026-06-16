@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "John Phillip | About me",
   description: "Personal space of John Phillip, a Full Stack Software Engineer. Deep-diving into hardware tuning and modern web engineering.",
   keywords: ["John Phillip", "Full Stack Engineer", "Software Engineer Philippines", "Hardware Tuning", "Anime.js Next.js Portfolio"],
-  authors: [{ name: "John Phillip" }],
+  authors: [{ name: "John Phillip Febrero Lacorte" }],
   openGraph: {
     title: "John Phillip | About me",
     description: "Personal space of John Phillip, a Full Stack Software Engineer. Deep-diving into hardware tuning, and modern web engineering.",
