@@ -25,26 +25,10 @@ export default function MediaSection() {
   // Gallery State
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [mounted, setMounted] = useState<boolean>(false);
-  const [isSectionVisible, setIsSectionVisible] = useState<boolean>(true);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsSectionVisible(entry.isIntersecting);
-      },
-      { threshold: 0.05 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
   }, []);
 
   // Prevent background scrolling when image modal is open
@@ -743,7 +727,7 @@ export default function MediaSection() {
         )}
 
         {/* Sticky Floating Media Bar */}
-        {isPlaying && !isSectionVisible && mounted && createPortal(
+        {isPlaying && mounted && createPortal(
           <>
             <style>{`
               @keyframes stickySlideUp {
@@ -758,7 +742,7 @@ export default function MediaSection() {
               }
             `}</style>
             <div 
-              className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm bg-white border-2 border-cute-dark rounded-2xl p-3 shadow-[4px_4px_0px_#2d2729] flex items-center justify-between gap-3"
+              className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] sm:w-full max-w-sm bg-white border-2 border-cute-dark rounded-2xl p-2.5 sm:p-3 shadow-[4px_4px_0px_#2d2729] flex items-center justify-between gap-2 sm:gap-3"
               style={{
                 animation: "stickySlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards"
               }}
@@ -766,12 +750,12 @@ export default function MediaSection() {
               {/* Track info on left */}
               <div className="flex items-center gap-2 min-w-0 flex-1">
                 <div 
-                  className="w-8 h-8 rounded-full bg-cute-peach border border-cute-dark flex items-center justify-center shrink-0 select-none text-sm animate-spin" 
+                  className="hidden sm:flex w-8 h-8 rounded-full bg-cute-peach border border-cute-dark items-center justify-center shrink-0 select-none text-sm animate-spin" 
                   style={{ animationDuration: '6s' }}
                 >
                   🎵
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <p className="text-xs font-bold text-cute-dark truncate leading-tight">
                     {tracks[currentTrackIndex].title}
                   </p>
@@ -782,7 +766,7 @@ export default function MediaSection() {
               </div>
 
               {/* Mini Controls on right */}
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 <button 
                   onClick={handlePrevTrack}
                   className="w-8 h-8 rounded-full border border-cute-dark bg-white flex items-center justify-center text-cute-dark hover:bg-cute-sky clickable shadow-[1.5px_1.5px_0px_#2d2729] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[0.5px_0.5px_0px_#2d2729]"
