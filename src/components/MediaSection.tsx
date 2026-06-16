@@ -60,7 +60,7 @@ export default function MediaSection() {
     { title: "Octopath Traveler Main Theme 🎻", artist: "Yasunori Nishiki", duration: "02:35", type: "Game OST", youtubeId: "sR1OHW_IReI" },
     { title: "Final Fantasy Theme 🌌", artist: "Nobuo Uematsu", duration: "03:08", type: "Game OST", youtubeId: "fsbqOGSw-5A" },
     { title: "All I Ever Need ✨", artist: "Austin Mahone", duration: "03:31", type: "Pop", youtubeId: "KAGnm9HoJsQ" },
-    { title: "Kailan 🌸", artist: "MYMP", duration: "04:37", type: "OPM", youtubeId: "D1--EAvWVAU" }
+    { title: "Forever 💫", artist: "Chris Brown", duration: "04:37", type: "Pop", youtubeId: "D1--EAvWVAU" }
   ];
 
   const tvShows = [
