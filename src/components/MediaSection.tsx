@@ -5,6 +5,13 @@ import { createPortal } from "react-dom";
 import { animate, stagger, random } from "animejs";
 import { Play, Pause, SkipForward, SkipBack, Music, Film, Trophy, X } from "lucide-react";
 
+declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: (() => void) | undefined;
+    YT: any;
+  }
+}
+
 export default function MediaSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   
@@ -12,9 +19,8 @@ export default function MediaSection() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
   const [currentSeconds, setCurrentSeconds] = useState<number>(0);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [hasStarted, setHasStarted] = useState<boolean>(false);
+  const playerRef = useRef<any>(null);
+  const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
 
   // Gallery State
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -87,80 +93,137 @@ export default function MediaSection() {
     "The Boy in the Striped Pajamas 🧸"
   ];
 
-  const handlePlayPause = () => {
-    if (!hasStarted) {
-      setHasStarted(true);
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const handleNextTrack = () => {
-    if (!hasStarted) {
-      setHasStarted(true);
-    }
-    setIsPlaying(true);
-    setCurrentTrackIndex((prev) => (prev + 1) % tracks.length);
-    setCurrentSeconds(0);
-  };
-
-  const handlePrevTrack = () => {
-    if (!hasStarted) {
-      setHasStarted(true);
-    }
-    setIsPlaying(true);
-    setCurrentTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
-    setCurrentSeconds(0);
-  };
-
   const parseDurationToSeconds = (durStr: string) => {
     const parts = durStr.split(":");
     return parseInt(parts[0]) * 60 + parseInt(parts[1]);
   };
 
-  // Keep a ref to currentTrackIndex so the interval always sees the latest value
+  // Keep refs for callbacks to avoid stale closures
   const currentTrackIndexRef = useRef(currentTrackIndex);
   useEffect(() => { currentTrackIndexRef.current = currentTrackIndex; }, [currentTrackIndex]);
 
-  // Music progress loop — auto-advances to next track when duration ends
+  const tracksRef = useRef(tracks);
+  useEffect(() => { tracksRef.current = tracks; }, [tracks]);
+
+  // Load YouTube IFrame API script & initialize player on mount
   useEffect(() => {
-    if (isPlaying) {
-      timerRef.current = setInterval(() => {
-        setCurrentSeconds((prev) => {
-          const track = tracks[currentTrackIndexRef.current];
-          const totalSecs = parseDurationToSeconds(track.duration);
-          if (prev >= totalSecs - 1) {
-            // Schedule the track advance outside the state updater
-            setTimeout(() => {
-              setCurrentTrackIndex((idx) => (idx + 1) % tracks.length);
-              setCurrentSeconds(0);
-            }, 0);
-            return 0;
-          }
-          return prev + 1;
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    }
+
+    const initPlayer = () => {
+      if (window.YT && window.YT.Player && !playerRef.current) {
+        playerRef.current = new window.YT.Player("youtube-player", {
+          height: "0",
+          width: "0",
+          videoId: tracksRef.current[currentTrackIndexRef.current].youtubeId,
+          playerVars: {
+            playsinline: 1,
+            controls: 0,
+            rel: 0,
+            showinfo: 0,
+            ecver: 2,
+          },
+          events: {
+            onReady: () => {
+              setIsPlayerReady(true);
+            },
+            onStateChange: (event: any) => {
+              if (event.data === window.YT.PlayerState.PLAYING) {
+                setIsPlaying(true);
+              } else if (event.data === window.YT.PlayerState.PAUSED) {
+                setIsPlaying(false);
+              } else if (event.data === window.YT.PlayerState.ENDED) {
+                setIsPlaying(true);
+                setCurrentSeconds(0);
+                setCurrentTrackIndex((prev) => {
+                  const nextIndex = (prev + 1) % tracksRef.current.length;
+                  if (playerRef.current && typeof playerRef.current.loadVideoById === "function") {
+                    playerRef.current.loadVideoById(tracksRef.current[nextIndex].youtubeId);
+                  }
+                  return nextIndex;
+                });
+              }
+            },
+          },
         });
-      }, 1000);
+      }
+    };
+
+    if (window.YT && window.YT.Player) {
+      initPlayer();
     } else {
-      if (timerRef.current) clearInterval(timerRef.current);
+      const prevCallback = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        if (prevCallback) prevCallback();
+        initPlayer();
+      };
     }
 
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      if (playerRef.current && typeof playerRef.current.destroy === "function") {
+        playerRef.current.destroy();
+        playerRef.current = null;
+        setIsPlayerReady(false);
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPlaying, currentTrackIndex]);
+  }, []);
 
-  // Sync play/pause state with YouTube iframe via postMessage
-  useEffect(() => {
-    if (!hasStarted || !iframeRef.current) return;
-    try {
-      const message = isPlaying 
-        ? { event: "command", func: "playVideo", args: [] }
-        : { event: "command", func: "pauseVideo", args: [] };
-      iframeRef.current.contentWindow?.postMessage(JSON.stringify(message), "*");
-    } catch (err) {
-      console.error("Failed to post message to iframe:", err);
+  const handlePlayPause = () => {
+    if (!playerRef.current || !isPlayerReady) return;
+    
+    if (isPlaying) {
+      playerRef.current.pauseVideo();
+      setIsPlaying(false);
+    } else {
+      playerRef.current.playVideo();
+      setIsPlaying(true);
     }
-  }, [isPlaying, hasStarted]);
+  };
+
+  const handleNextTrack = () => {
+    setIsPlaying(true);
+    setCurrentSeconds(0);
+    setCurrentTrackIndex((prev) => {
+      const nextIndex = (prev + 1) % tracks.length;
+      if (playerRef.current && isPlayerReady) {
+        playerRef.current.loadVideoById(tracks[nextIndex].youtubeId);
+      }
+      return nextIndex;
+    });
+  };
+
+  const handlePrevTrack = () => {
+    setIsPlaying(true);
+    setCurrentSeconds(0);
+    setCurrentTrackIndex((prev) => {
+      const prevIndex = (prev - 1 + tracks.length) % tracks.length;
+      if (playerRef.current && isPlayerReady) {
+        playerRef.current.loadVideoById(tracks[prevIndex].youtubeId);
+      }
+      return prevIndex;
+    });
+  };
+
+  // Sync current progress timer with actual YouTube Player time
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isPlaying && playerRef.current && isPlayerReady) {
+      timer = setInterval(() => {
+        if (playerRef.current && typeof playerRef.current.getCurrentTime === "function") {
+          const secs = Math.floor(playerRef.current.getCurrentTime());
+          setCurrentSeconds(secs);
+        }
+      }, 500);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [isPlaying, isPlayerReady]);
 
   // Equalizer Bars bounce
   useEffect(() => {
@@ -380,17 +443,11 @@ export default function MediaSection() {
                 🎵 I love to travel with music—it helps me reset and motivates me to work harder!
               </p>
             </div>
-            {/* Audio-only YouTube player: off-screen so it plays but is invisible */}
-            {hasStarted && (
-              <iframe
-                ref={iframeRef}
-                key={`yt-${currentTrackIndex}`}
-                src={`https://www.youtube.com/embed/${tracks[currentTrackIndex].youtubeId}?enablejsapi=1&autoplay=1&controls=0&rel=0&mute=0`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                title={tracks[currentTrackIndex].title}
-                style={{ position: 'fixed', width: '0px', height: '0px', border: 'none', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
-              />
-            )}
+            {/* Audio-only YouTube player container */}
+            <div
+              id="youtube-player"
+              style={{ position: 'fixed', width: '0px', height: '0px', border: 'none', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
+            />
           </div>
 
           {/* TV Shows & Sports grids - lg:col-span-7 */}

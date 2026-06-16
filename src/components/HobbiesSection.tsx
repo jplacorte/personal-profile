@@ -4,6 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
 import { Gamepad2, Stars, Swords, Skull, Shield, Target, Code2, Plane, MapPin, Mic, Volume2 } from "lucide-react";
 
+declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: (() => void) | undefined;
+    YT: any;
+  }
+}
+
 const karaokeSongs = [
   { title: "If I Let You Go",           artist: "Westlife",          youtubeId: "-RpYyxf9cdw" },
   { title: "Harana",                     artist: "Parokya ni Edgar",   youtubeId: "4hmodo8yDCo" },
@@ -201,22 +208,75 @@ export default function HobbiesSection() {
   const [isSinging, setIsSinging] = useState<boolean>(false);
   const [micGain, setMicGain] = useState<number>(80);
   const [showScoreStamp, setShowScoreStamp] = useState<boolean>(false);
-  const [hasStartedSinging, setHasStartedSinging] = useState<boolean>(false);
-  const karaokeIframeRef = useRef<HTMLIFrameElement>(null);
+  const karaokePlayerRef = useRef<any>(null);
+  const [isKaraokePlayerReady, setIsKaraokePlayerReady] = useState<boolean>(false);
 
+  // Keep refs for callbacks to avoid stale closures
+  const selectedSongIndexRef = useRef(selectedSongIndex);
+  useEffect(() => { selectedSongIndexRef.current = selectedSongIndex; }, [selectedSongIndex]);
 
-  // Sync singing play/pause state with YouTube iframe via postMessage
+  const karaokeSongsRef = useRef(karaokeSongs);
+  useEffect(() => { karaokeSongsRef.current = karaokeSongs; }, [karaokeSongs]);
+
+  // Load YouTube IFrame API script & initialize karaoke player on mount
   useEffect(() => {
-    if (!hasStartedSinging || !karaokeIframeRef.current) return;
-    try {
-      const message = isSinging
-        ? { event: "command", func: "playVideo", args: [] }
-        : { event: "command", func: "pauseVideo", args: [] };
-      karaokeIframeRef.current.contentWindow?.postMessage(JSON.stringify(message), "*");
-    } catch (err) {
-      console.error("Failed to post message to karaoke iframe:", err);
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
     }
-  }, [isSinging, hasStartedSinging]);
+
+    const initPlayer = () => {
+      if (window.YT && window.YT.Player && !karaokePlayerRef.current) {
+        karaokePlayerRef.current = new window.YT.Player("karaoke-youtube-player", {
+          height: "0",
+          width: "0",
+          videoId: karaokeSongsRef.current[selectedSongIndexRef.current].youtubeId,
+          playerVars: {
+            playsinline: 1,
+            controls: 0,
+            rel: 0,
+            showinfo: 0,
+            ecver: 2,
+          },
+          events: {
+            onReady: () => {
+              setIsKaraokePlayerReady(true);
+            },
+            onStateChange: (event: any) => {
+              if (event.data === window.YT.PlayerState.PLAYING) {
+                setIsSinging(true);
+              } else if (event.data === window.YT.PlayerState.PAUSED) {
+                setIsSinging(false);
+              } else if (event.data === window.YT.PlayerState.ENDED) {
+                setIsSinging(false);
+              }
+            },
+          },
+        });
+      }
+    };
+
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+    } else {
+      const prevCallback = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        if (prevCallback) prevCallback();
+        initPlayer();
+      };
+    }
+
+    return () => {
+      if (karaokePlayerRef.current && typeof karaokePlayerRef.current.destroy === "function") {
+        karaokePlayerRef.current.destroy();
+        karaokePlayerRef.current = null;
+        setIsKaraokePlayerReady(false);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Karaoke Equalizer Bars bounce
   useEffect(() => {
@@ -605,10 +665,10 @@ export default function HobbiesSection() {
                       key={song.title}
                       onClick={() => {
                         setSelectedSongIndex(index);
-                        if (!hasStartedSinging) {
-                          setHasStartedSinging(true);
-                        }
                         setIsSinging(true);
+                        if (karaokePlayerRef.current && isKaraokePlayerReady) {
+                          karaokePlayerRef.current.loadVideoById(karaokeSongs[index].youtubeId);
+                        }
                       }}
                       className={`w-full text-left p-1.5 px-3 rounded-lg border text-xs font-bold font-sans transition-all flex justify-between items-center clickable ${
                         selectedSongIndex === index
@@ -683,10 +743,14 @@ export default function HobbiesSection() {
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={() => {
-                          if (!hasStartedSinging) {
-                            setHasStartedSinging(true);
+                          if (!karaokePlayerRef.current || !isKaraokePlayerReady) return;
+                          if (isSinging) {
+                            karaokePlayerRef.current.pauseVideo();
+                            setIsSinging(false);
+                          } else {
+                            karaokePlayerRef.current.playVideo();
+                            setIsSinging(true);
                           }
-                          setIsSinging(!isSinging);
                         }}
                         className={`w-24 px-3 py-1 border-2 border-cute-dark rounded-full text-[9px] font-mono font-bold transition-all shadow-[1.5px_1.5px_0px_#2d2729] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[0.5px_0.5px_0px_#2d2729] clickable ${
                           isSinging
@@ -734,17 +798,11 @@ export default function HobbiesSection() {
 
         </div>
       </div>
-      {/* Audio-only YouTube player for karaoke: off-screen, plays when singing */}
-      {hasStartedSinging && karaokeSongs[selectedSongIndex].youtubeId && (
-        <iframe
-          ref={karaokeIframeRef}
-          key={`karaoke-yt-${selectedSongIndex}`}
-          src={`https://www.youtube.com/embed/${karaokeSongs[selectedSongIndex].youtubeId}?enablejsapi=1&autoplay=1&controls=0&rel=0&mute=0`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          title={karaokeSongs[selectedSongIndex].title}
-          style={{ position: 'fixed', width: '0px', height: '0px', border: 'none', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
-        />
-      )}
+      {/* Audio-only YouTube player for karaoke: off-screen */}
+      <div
+        id="karaoke-youtube-player"
+        style={{ position: 'fixed', width: '0px', height: '0px', border: 'none', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
+      />
     </section>
   );
 }
