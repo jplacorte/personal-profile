@@ -53,6 +53,9 @@ export default function MediaSection() {
     { title: "Sa Tuwina 💖", artist: "TJ Monterde", duration: "04:04", type: "OPM", youtubeId: "VoSWrn8rvLE" },
     { title: "Kailan? 🌧️", artist: "Maki", duration: "03:52", type: "OPM", youtubeId: "Uq8ZhVpNYzs" },
     { title: "We Could Happen 🎸", artist: "AJ Rafael", duration: "03:35", type: "Pop", youtubeId: "V6HB_6ltwSA" },
+    { title: "Open Your Heart 💙", artist: "Westlife", duration: "03:40", type: "Pop", youtubeId: "rjf-MMJugsM" },
+    { title: "Out of Time ⏳", artist: "The Weeknd", duration: "03:35", type: "R&B", youtubeId: "kxgj5af8zg4" },
+    { title: "Lighters 🔥", artist: "Bad Meets Evil ft. Bruno Mars", duration: "05:08", type: "Pop Rap", youtubeId: "YWt4wmZ_EMI" },
     { title: "Dreaming Alone 🌠", artist: "Against The Current ft. Taka", duration: "03:09", type: "Rock", youtubeId: "l0qWjHP1GQc" },
     { title: "Hold My Hand 🤝", artist: "Akon ft. Michael Jackson", duration: "03:35", type: "Pop", youtubeId: "P9cVHpktlJM" },
     { title: "All I Ever Need ✨", artist: "Austin Mahone", duration: "03:31", type: "Pop", youtubeId: "KAGnm9HoJsQ" },
@@ -61,9 +64,7 @@ export default function MediaSection() {
     { title: "Shelter (Ghibli Version) ☁️", artist: "Porter Robinson", duration: "04:40", type: "Orchestral", youtubeId: "tY3x3JXqAJs" },
     { title: "Octopath Traveler Main Theme 🎻", artist: "Yasunori Nishiki", duration: "02:35", type: "Game OST", youtubeId: "sR1OHW_IReI" },
     { title: "Final Fantasy Theme 🌌", artist: "Nobuo Uematsu", duration: "03:08", type: "Game OST", youtubeId: "fsbqOGSw-5A" },
-    { title: "Open Your Heart 💙", artist: "Westlife", duration: "03:40", type: "Pop", youtubeId: "rjf-MMJugsM" },
-    { title: "Out of Time ⏳", artist: "The Weeknd", duration: "03:35", type: "R&B", youtubeId: "kxgj5af8zg4" },
-    { title: "Lighters 🔥", artist: "Bad Meets Evil ft. Bruno Mars", duration: "05:08", type: "Hip-Hop", youtubeId: "YWt4wmZ_EMI" }
+    
   ];
 
   const tvShows = [
