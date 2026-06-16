@@ -367,6 +367,11 @@ export default function TimelineSection() {
               ))}
             </div>
 
+            {/* Mobile swipe helper */}
+            <div className="mt-4 text-center md:hidden font-mono text-[9px] font-bold text-cute-muted uppercase tracking-wider">
+              ✨ Tip: Swipe left/right to browse eras
+            </div>
+
             {/* Tabs for desktop */}
             <div className="absolute -right-12 top-10 hidden md:flex flex-col gap-2 z-10">
               {eras.map((era, index) => (
