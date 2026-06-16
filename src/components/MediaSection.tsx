@@ -117,8 +117,8 @@ export default function MediaSection() {
     const initPlayer = () => {
       if (window.YT && window.YT.Player && !playerRef.current) {
         playerRef.current = new window.YT.Player("youtube-player", {
-          height: "0",
-          width: "0",
+          height: "200",
+          width: "200",
           videoId: tracksRef.current[currentTrackIndexRef.current].youtubeId,
           playerVars: {
             playsinline: 1,
@@ -446,7 +446,16 @@ export default function MediaSection() {
             {/* Audio-only YouTube player container */}
             <div
               id="youtube-player"
-              style={{ position: 'fixed', width: '0px', height: '0px', border: 'none', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
+              style={{
+                position: 'fixed',
+                width: '200px',
+                height: '200px',
+                border: 'none',
+                left: '-9999px',
+                top: '-9999px',
+                opacity: 0.01,
+                pointerEvents: 'none',
+              }}
             />
           </div>
 

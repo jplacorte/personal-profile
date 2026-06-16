@@ -230,8 +230,8 @@ export default function HobbiesSection() {
     const initPlayer = () => {
       if (window.YT && window.YT.Player && !karaokePlayerRef.current) {
         karaokePlayerRef.current = new window.YT.Player("karaoke-youtube-player", {
-          height: "0",
-          width: "0",
+          height: "200",
+          width: "200",
           videoId: karaokeSongsRef.current[selectedSongIndexRef.current].youtubeId,
           playerVars: {
             playsinline: 1,
@@ -801,7 +801,16 @@ export default function HobbiesSection() {
       {/* Audio-only YouTube player for karaoke: off-screen */}
       <div
         id="karaoke-youtube-player"
-        style={{ position: 'fixed', width: '0px', height: '0px', border: 'none', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
+        style={{
+          position: 'fixed',
+          width: '200px',
+          height: '200px',
+          border: 'none',
+          left: '-9999px',
+          top: '-9999px',
+          opacity: 0.01,
+          pointerEvents: 'none',
+        }}
       />
     </section>
   );
