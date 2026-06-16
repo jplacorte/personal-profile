@@ -16,12 +16,12 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: "John Phillip | About me",
-  description: "Personal space of John Phillip, a Full Stack Software Engineer. Deep-diving into hardware tuning, mechanical keyboard modding, competitive gaming, and modern web engineering.",
-  keywords: ["John Phillip", "Full Stack Engineer", "Software Engineer Philippines", "Keyboard Modding", "Hardware Tuning", "Competitive Gaming Portfolio", "Anime.js Next.js Portfolio"],
+  description: "Personal space of John Phillip, a Full Stack Software Engineer. Deep-diving into hardware tuning and modern web engineering.",
+  keywords: ["John Phillip", "Full Stack Engineer", "Software Engineer Philippines", "Hardware Tuning", "Anime.js Next.js Portfolio"],
   authors: [{ name: "John Phillip" }],
   openGraph: {
     title: "John Phillip | About me",
-    description: "Personal space of John Phillip, a Full Stack Software Engineer. Deep-diving into hardware tuning, mechanical keyboard modding, competitive gaming, and modern web engineering.",
+    description: "Personal space of John Phillip, a Full Stack Software Engineer. Deep-diving into hardware tuning, and modern web engineering.",
     type: "website",
     locale: "en_PH",
   },
