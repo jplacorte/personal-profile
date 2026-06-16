@@ -22,6 +22,18 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   // Soft springy fade-in on mount
   useEffect(() => {
     animate(".page-wrapper", {
@@ -47,13 +59,13 @@ export default function Home() {
           className={`max-w-4xl mx-auto rounded-full border-2 border-cute-dark bg-white flex justify-between items-center transition-all duration-300 ${
             scrolled 
               ? "py-2 px-4 md:px-6 shadow-[3px_3px_0px_#2d2729]" 
-              : "py-3 px-5 md:px-8 shadow-[2px_2px_0px_#2d2729]"
+              : "py-3 px-4 md:px-8 shadow-[2px_2px_0px_#2d2729]"
           }`}
         >
           {/* Logo / System Indicator */}
-          <a href="#intro" className="flex items-center space-x-2 font-mono text-xs tracking-widest font-extrabold text-cute-dark hover:text-cute-peach transition-colors clickable">
-            <Cpu size={14} className="text-cute-peach animate-pulse" />
-            <span>John Phillip // <span className="text-cute-peach">SYS ⚡</span></span>
+          <a href="#intro" className="flex items-center space-x-2 font-mono text-xs tracking-widest font-extrabold text-cute-dark hover:text-cute-peach transition-colors clickable whitespace-nowrap">
+            <Cpu size={14} className="text-cute-peach animate-pulse shrink-0" />
+            <span className="truncate">John Phillip // <span className="text-cute-peach">SYS ⚡</span></span>
           </a>
 
           {/* Desktop Navigation Links */}
@@ -82,7 +94,7 @@ export default function Home() {
       </header>
 
       <div 
-        className={`fixed inset-0 z-35 bg-white/95 backdrop-blur-md flex flex-col justify-center items-center gap-8 text-lg font-mono font-bold transition-transform duration-300 md:hidden ${
+        className={`fixed inset-0 z-50 bg-white/95 backdrop-blur-md flex flex-col justify-center items-center gap-8 text-lg font-mono font-bold transition-transform duration-300 md:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full invisible pointer-events-none"
         }`}
       >
