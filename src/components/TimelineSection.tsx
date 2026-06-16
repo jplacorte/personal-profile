@@ -22,7 +22,7 @@ const eras = [
     title: "High School Days",
     subtitle: "Down the Rabbit Hole 🐰",
     emoji: "🏫",
-    vibe: "Competitive gaming, PC hardware, & tech discovery.",
+    vibe: "Competitive gaming, Exploring new things, & tech discovery.",
     story: "I studied at Dao Catholic High School Inc. for my high school years. This era was all about diving deeper into competitive gaming, especially League of Legends, where I was always eager to rush home and play. I also started watching anime series like Attack on Titan, Sword Art Online, and Haikyu!!. Outside of school and gaming, I was active in our local parish as an altar server and choir singer, and I traveled to various places for Scout Jamborees with the Senior Scouts. Over time, my passion for gaming evolved into a fascination with PC hardware and components. As I began learning about how they influence frame rates, I realized I wanted to understand how computers actually work, rather than just playing games on them.",
     tags: ["League of Legends 🎮", "Parish Service ⛪", "Tech Curiosity 💡"],
     icon: School,
