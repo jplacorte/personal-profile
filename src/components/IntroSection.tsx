@@ -109,8 +109,48 @@ export default function IntroSection() {
             {text}
           </p>
 
+          {/* Profile Details Grid */}
+          <div className="intro-text grid grid-cols-2 gap-4 max-w-xl">
+            <div className="bg-white border-2 border-cute-dark rounded-2xl p-3 flex items-center space-x-3 shadow-[2.5px_2.5px_0px_#2d2729]">
+              <span className="text-xl">📅</span>
+              <div>
+                <p className="text-[10px] font-mono font-bold text-cute-muted uppercase leading-none">Birthday</p>
+                <p className="text-xs md:text-sm font-bold text-cute-dark font-sans mt-1">May 22, 1998</p>
+              </div>
+            </div>
+
+            <div className="bg-white border-2 border-cute-dark rounded-2xl p-3 flex items-center space-x-3 shadow-[2.5px_2.5px_0px_#2d2729]">
+              <span className="text-xl">📍</span>
+              <div>
+                <p className="text-[10px] font-mono font-bold text-cute-muted uppercase leading-none">Birthplace</p>
+                <p className="text-xs md:text-sm font-bold text-cute-dark font-sans mt-1">San Jose, Antique</p>
+              </div>
+            </div>
+
+            <div className="bg-white border-2 border-cute-dark rounded-2xl p-3 flex items-center space-x-3 shadow-[2.5px_2.5px_0px_#2d2729]">
+              <span className="text-xl">📏</span>
+              <div>
+                <p className="text-[10px] font-mono font-bold text-cute-muted uppercase leading-none">Height</p>
+                <p className="text-xs md:text-sm font-bold text-cute-dark font-sans mt-1">166 cm</p>
+              </div>
+            </div>
+
+            <div className="bg-white border-2 border-cute-dark rounded-2xl p-3 flex items-center space-x-3 shadow-[2.5px_2.5px_0px_#2d2729]">
+              <span className="text-xl">🎨</span>
+              <div>
+                <p className="text-[10px] font-mono font-bold text-cute-muted uppercase leading-none">Fave Colors</p>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-red-500 border border-cute-dark" title="Red" />
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#f5f5dc] border border-cute-dark" title="Beige" />
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-blue-500 border border-cute-dark" title="Blue" />
+                  <span className="text-xs font-bold text-cute-dark font-sans truncate max-w-[80px] md:max-w-none">Red, Beige, Blue</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Buttons group with cute styling */}
-          <div className="hero-btn-group flex flex-wrap gap-4 pt-4">
+          <div className="hero-btn-group flex flex-wrap gap-4 pt-2">
             <a 
               href="#hobbies" 
               className="cute-btn px-6 py-3 bg-cute-mint hover:bg-cute-mint/90 text-cute-dark font-bold tracking-wider text-sm hover:cute-card-hover active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#2d2729]"
