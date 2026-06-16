@@ -51,6 +51,7 @@ export default function MediaSection() {
 
   const tracks = [
     { title: "Sa Tuwina 💖", artist: "TJ Monterde", duration: "04:04", type: "OPM", youtubeId: "VoSWrn8rvLE" },
+    { title: "Dreaming Alone 🌠", artist: "Against The Current ft. Taka", duration: "03:09", type: "Rock", youtubeId: "l0qWjHP1GQc" },
     { title: "Hold My Hand 🤝", artist: "Akon ft. Michael Jackson", duration: "03:35", type: "Pop", youtubeId: "P9cVHpktlJM" },
     { title: "Next 2 U - Euc 🌸", artist: "SawanoHiroyuki[nZk] ft. naNami", duration: "04:04", type: "Anime OST", youtubeId: "AheLLqrEKn4" },
     { title: "Shelter (Ghibli Version) ☁️", artist: "Porter Robinson", duration: "04:40", type: "Orchestral", youtubeId: "tY3x3JXqAJs" },
@@ -440,6 +441,65 @@ export default function MediaSection() {
                 <SkipForward size={16} />
               </button>
             </div>
+
+            {/* Playlist */}
+            <div className="w-full mt-6 border-t-2 border-dashed border-cute-dark pt-6">
+              <div className="flex items-center gap-1.5 mb-3 font-mono text-[11px] font-bold text-cute-muted uppercase tracking-wider">
+                <Play size={10} className="text-cute-peach animate-pulse" fill="currentColor" />
+                Playlist ({tracks.length})
+              </div>
+              <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                {tracks.map((track, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      if (idx === currentTrackIndex) {
+                        handlePlayPause();
+                      } else {
+                        setIsPlaying(true);
+                        setCurrentSeconds(0);
+                        setCurrentTrackIndex(idx);
+                        if (playerRef.current && isPlayerReady) {
+                          playerRef.current.loadVideoById(track.youtubeId);
+                        }
+                      }
+                    }}
+                    className={`w-full text-left p-2.5 rounded-xl border-2 border-cute-dark flex items-center justify-between text-xs transition-all clickable shadow-[2px_2px_0px_#2d2729] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#2d2729] ${
+                      idx === currentTrackIndex
+                        ? "bg-cute-sky/40 border-cute-dark font-extrabold"
+                        : "bg-white hover:bg-cute-peach/15"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="font-mono text-[10px] text-cute-muted shrink-0 w-4 flex justify-center">
+                        {idx === currentTrackIndex ? (
+                          isPlaying ? (
+                            <span className="text-[10px] animate-pulse">🔊</span>
+                          ) : (
+                            <span className="text-[10px]">⏸️</span>
+                          )
+                        ) : (
+                          (idx + 1).toString().padStart(2, '0')
+                        )}
+                      </span>
+                      <div className="truncate">
+                        <span className="font-sans text-cute-dark block truncate">{track.title}</span>
+                        <span className="font-mono text-[9px] text-cute-muted block truncate mt-0.5">{track.artist}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span className="px-1.5 py-0.5 border border-cute-dark rounded-full bg-white text-[8px] font-mono font-bold text-cute-dark">
+                        {track.type}
+                      </span>
+                      <span className="font-mono text-[10px] text-cute-muted font-bold">
+                        {track.duration}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
 
             {/* Travel with Music Quote */}
             <div className="w-full mt-6 p-3.5 bg-cute-bg-muted border-2 border-cute-dark rounded-2xl shadow-[2px_2px_0px_#2d2729] text-center">
