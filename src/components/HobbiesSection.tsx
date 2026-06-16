@@ -591,7 +591,7 @@ export default function HobbiesSection() {
               <div className="space-y-6">
                 <div>
                   <h4 className="text-xs font-bold font-mono text-cute-muted uppercase tracking-wider mb-1">
-                    The Wanderlust
+                    Adventure Mode
                   </h4>
                   <p className="text-sm text-cute-dark font-medium leading-relaxed font-sans">
                     I love to travel, onboard on a plane, and visit places I have never been. Strolling around shopping malls, scenic parks, and vibrant cities is my favorite way to reset and get inspired!
