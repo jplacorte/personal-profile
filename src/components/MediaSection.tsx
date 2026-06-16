@@ -742,20 +742,20 @@ export default function MediaSection() {
               }
             `}</style>
             <div 
-              className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] sm:w-full max-w-sm bg-white border-2 border-cute-dark rounded-2xl p-2.5 sm:p-3 shadow-[4px_4px_0px_#2d2729] flex items-center justify-between gap-2 sm:gap-3"
+              className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] sm:w-full max-w-[460px] bg-white border-2 border-cute-dark rounded-2xl p-3 shadow-[4px_4px_0px_#2d2729] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left"
               style={{
                 animation: "stickySlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards"
               }}
             >
               {/* Track info on left */}
-              <div className="flex items-center gap-2 min-w-0 flex-1">
+              <div className="flex items-center gap-2 min-w-0 flex-1 justify-center sm:justify-start w-full sm:w-auto">
                 <div 
                   className="hidden sm:flex w-8 h-8 rounded-full bg-cute-peach border border-cute-dark items-center justify-center shrink-0 select-none text-sm animate-spin" 
                   style={{ animationDuration: '6s' }}
                 >
                   🎵
                 </div>
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 text-center sm:text-left">
                   <p className="text-xs font-bold text-cute-dark truncate leading-tight">
                     {tracks[currentTrackIndex].title}
                   </p>
@@ -766,7 +766,7 @@ export default function MediaSection() {
               </div>
 
               {/* Mini Controls on right */}
-              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 justify-center w-full sm:w-auto mt-2.5 sm:mt-0">
                 <button 
                   onClick={handlePrevTrack}
                   className="w-8 h-8 rounded-full border border-cute-dark bg-white flex items-center justify-center text-cute-dark hover:bg-cute-sky clickable shadow-[1.5px_1.5px_0px_#2d2729] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[0.5px_0.5px_0px_#2d2729]"
